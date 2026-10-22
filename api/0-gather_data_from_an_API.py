@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Script that fetches and displays TODO list progress for a given employee ID
 using the JSONPlaceholder REST API.
