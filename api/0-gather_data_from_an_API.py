@@ -14,22 +14,20 @@ def get_employee_todo_progress(employee_id):
     user_url = (
         "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     )
-    user_response = requests.get(user_url)
-    user_data = user_response.json()
+    user_data = requests.get(user_url).json()
 
     if not user_data:
         print("Employee not found.")
         return
 
-    employee_name = user_data.get("username")
+    employee_name = user_data.get("name")
 
     todos_url = (
-        "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        "https://jsonplaceholder.typicode.com/todos?userId={}".format(
             employee_id
         )
     )
-    todos_response = requests.get(todos_url)
-    todos = todos_response.json()
+    todos = requests.get(todos_url).json()
 
     total_tasks = len(todos)
     done_tasks = [task for task in todos if task.get("completed")]
